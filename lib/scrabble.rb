@@ -1,7 +1,29 @@
 class Scrabble
 
-  def score(word)
-    1
+  attr_reader :word, :scoring
+
+  def initialize(word)
+    @word = word
+    @scoring = []
+  end
+
+
+  def score
+    #split all the words into characters...=array
+    #for each in array, access the value
+    #add the values and return the score.
+    if @word.length == 1
+      @scoring = point_values[@word.upcase]
+    elsif @word == nil
+      @scoring = 0
+    else
+      words = []
+      words << @word.split("")
+      @scoring = @words.map do |letter|
+        point_values[letter.upcase]
+        @scoring.sum
+      end
+    end
   end
 
   def point_values
@@ -15,4 +37,7 @@ class Scrabble
       "Y"=>4, "Z"=>10
     }
   end
+
+
+
 end
